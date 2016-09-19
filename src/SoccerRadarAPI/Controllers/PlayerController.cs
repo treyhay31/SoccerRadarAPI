@@ -13,9 +13,9 @@ namespace SoccerRadarAPI.Controllers
     [Route("api/players")]
     public class PlayerController : Controller
     {
-        public IReadOnlyRepository<Player> _playerRepository { get; set; }
+        public IReadOnlyRepository<PlayerProfile> _playerRepository { get; set; }
 
-        public PlayerController(IReadOnlyRepository<Player> playerRepository)
+        public PlayerController(IReadOnlyRepository<PlayerProfile> playerRepository)
         {
             if (playerRepository == null)
             {
