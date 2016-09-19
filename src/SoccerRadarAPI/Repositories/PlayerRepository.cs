@@ -1,4 +1,4 @@
-﻿using SoccerRadarAPI.Models;
+﻿using SoccerRadarAPI.Models.Players;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;

@@ -5,9 +5,10 @@ using System.Threading.Tasks;
 
 namespace SoccerRadarAPI.DataStore
 {
-    public interface IDataStore<T>
+    public interface IData<T>
     {
         IEnumerable<T> GetAll();
         T Find(string key);
+        void Refresh();
     }
 }
