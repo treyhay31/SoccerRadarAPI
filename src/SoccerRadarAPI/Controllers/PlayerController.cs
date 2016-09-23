@@ -11,11 +11,11 @@ using SoccerRadarAPI.Models.Players;
 namespace SoccerRadarAPI.Controllers
 {
     [Route("api/players")]
-    public class PlayersController : Controller
+    public class PlayerController : Controller
     {
-        public IReadOnlyRepository<PlayerProfile> _playerRepository { get; set; }
+        public IReadOnlyRepository<Player> _playerRepository { get; set; }
 
-        public PlayersController(IReadOnlyRepository<PlayerProfile> playerRepository)
+        public PlayerController(IReadOnlyRepository<Player> playerRepository)
         {
             if (playerRepository == null)
             {
