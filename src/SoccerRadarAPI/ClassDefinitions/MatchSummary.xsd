@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:soccer="http://feed.elasticstats.com/schema/soccer/sr/v2/matches-summary.xsd"
+    targetNamespace="http://feed.elasticstats.com/schema/soccer/sr/v2/matches-summary.xsd"
+    elementFormDefault="qualified"
+>
+    <xs:include schemaLocation="./common-soccer.xsd"/>
+    <xs:element name="summary" type="soccer:summary"/>
+    <xs:complexType name="summary">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="matches" type="soccer:summaryMatches"/>
+        </xs:sequence>
+        <xs:attribute name="generated" use="required" type="xs:dateTime"/>
+    </xs:complexType>
+    <xs:complexType name="summaryMatches">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="match" type="soccer:summaryMatch"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="summaryMatch">
+        <xs:complexContent>
+            <xs:extension base="soccer:match">
+                <xs:sequence>
+                    <xs:element minOccurs="1" maxOccurs="1" name="home" type="soccer:summaryTeam"/>
+                    <xs:element minOccurs="1" maxOccurs="1" name="away" type="soccer:summaryTeam"/>
+                    <xs:element minOccurs="0" maxOccurs="1" name="venue" type="soccer:venue"/>
+                    <xs:element minOccurs="0" maxOccurs="1" name="facts" type="soccer:matchFacts"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="summaryScoring">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="2" name="half" type="soccer:summaryScore"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="overtime" type="soccer:summaryScore"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="penalty" type="soccer:summaryScore"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="summaryScore">
+        <xs:attribute name="number" use="required" type="xs:integer"/>
+        <xs:attribute name="points" use="required" type="xs:integer"/>
+    </xs:complexType>
+</xs:schema>

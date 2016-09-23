@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<lxdb8:LXDBWizardProject xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xmlns:lxdb8="http://www.liquid-technologies.com/LTWizProjectLib8" ProjectVersion="14.1.4.6649" UseRelativePaths="true">
+	<lxdb8:Schema FullPathName=".\MatchBoxscore.xsd" SelectedSchemaType="XSD" XDRAllowAdditionalAttributes="false" XDRIgnoreSimpleElements="false" WSDLGenerateClientInterface="false" WSDLAutoFilterElements="false" SelectedLanguage="CPP">
+		<lxdb8:CPP CollectionMapping="Original" OutputPath=".\MatchBoxscore.xsd.Output\SourceCodeCPP" DocumentationOutputPath=".\MatchBoxscore.xsd.Output\DocumentationCPP" MappingFilePath=".\MatchBoxscore.xsd_NameMapping.cpp.xml" DefaultClassNamespace="MatchBoxscoreLib"/>
+		<lxdb8:CSharp CollectionMapping="Original" OutputPath=".\MatchBoxscore.xsd.Output\SourceCodeCS" DocumentationOutputPath=".\MatchBoxscore.xsd.Output\DocumentationCS" MappingFilePath=".\MatchBoxscore.xsd_NameMapping.cs.xml" DefaultClassNamespace="MatchBoxscoreLib" BaseNamespace="">
+			<lxdb8:DotNetPlatformOptions>
+				<lxdb8:DotNetDevEnv>VS2015</lxdb8:DotNetDevEnv>
+				<lxdb8:DotNetPlatform>DotNet452</lxdb8:DotNetPlatform>
+			</lxdb8:DotNetPlatformOptions>
+		</lxdb8:CSharp>
+		<lxdb8:Java CollectionMapping="Original" OutputPath=".\MatchBoxscore.xsd.Output\SourceCodeJava" DocumentationOutputPath=".\MatchBoxscore.xsd.Output\DocumentationJava" MappingFilePath=".\MatchBoxscore.xsd_NameMapping.java.xml" DefaultPackageName="MatchBoxscoreLib" BasePackage="">
+			<lxdb8:JavaPlatformOptions>
+				<lxdb8:JDK>JDK5</lxdb8:JDK>
+			</lxdb8:JavaPlatformOptions>
+		</lxdb8:Java>
+		<lxdb8:VBNet CollectionMapping="Original" OutputPath=".\MatchBoxscore.xsd.Output\SourceCodeVBNet" DocumentationOutputPath=".\MatchBoxscore.xsd.Output\DocumentationVBNet" MappingFilePath=".\MatchBoxscore.xsd_NameMapping.vbnet.xml" DefaultClassNamespace="MatchBoxscoreLib" BaseNamespace="">
+			<lxdb8:DotNetPlatformOptions>
+				<lxdb8:DotNetDevEnv>VS2015</lxdb8:DotNetDevEnv>
+				<lxdb8:DotNetPlatform>DotNet452</lxdb8:DotNetPlatform>
+			</lxdb8:DotNetPlatformOptions>
+		</lxdb8:VBNet>
+		<lxdb8:VB6 CollectionMapping="Original" OutputPath=".\MatchBoxscore.xsd.Output\SourceCodeVB" DocumentationOutputPath=".\MatchBoxscore.xsd.Output\DocumentationVB" MappingFilePath=".\MatchBoxscore.xsd_NameMapping.vb6.xml" ComponentName="MatchBoxscoreLib" Description="" MajorVersion="1" MinorVersion="0" Revision="0" ProductName=""/>
+	</lxdb8:Schema>
+	<lxdb8:Output CreateDocumentation="true" CreateSampleApplication="true" OutputDateInHeaderBlock="false" OutputSchemaPathInHeaderBlock="true" OutputVersionInHeaderBlock="true" OutputProjectFiles="true" OutputFastInfosetTables="false" OutputPropertyEvents="false" OutputElmRefAsInterface="true" OutputPrimitiveClassesAsTextProperty="false" OutputXmlSchemaProviderAttribute="false">
+		<lxdb8:SelectedWsdlPort Port="" Service=""/>
+		<lxdb8:ProjectReferenceInclude/>
+		<lxdb8:ProjectCompileInclude/>
+	</lxdb8:Output>
+	<lxdb8:PostBuild BuildHelp="true" OpenHelp="true" OpenProject="true"/>
+</lxdb8:LXDBWizardProject>

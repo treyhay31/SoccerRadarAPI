@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        xmlns:soccer="http://feed.elasticstats.com/schema/soccer/sr/v2/teams-standing.xsd"
+        targetNamespace="http://feed.elasticstats.com/schema/soccer/sr/v2/teams-standing.xsd"
+        elementFormDefault="qualified"
+        >
+    <xs:include schemaLocation="./common-soccer.xsd"/>
+    <xs:element name="standings">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element minOccurs="1" maxOccurs="1" name="categories">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element minOccurs="0" maxOccurs="unbounded" name="category"
+                                        type="soccer:standingsCategory"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="generated" use="required" type="xs:dateTime"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="standingsCategory">
+        <xs:complexContent>
+            <xs:extension base="soccer:simpleCategory">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" name="tournament_group" type="soccer:standingsTournamentGroup"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="standingsTournamentGroup">
+        <xs:complexContent>
+            <xs:extension base="soccer:extendedTournamentGroup">
+                <xs:sequence>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" name="tournament" type="soccer:standingsTournament"/>
+                    </xs:sequence>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="standingsTournament">
+        <xs:complexContent>
+            <xs:extension base="soccer:extendedTournament">
+                <xs:sequence>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" maxOccurs="unbounded" name="team" type="soccer:standingsTeam"/>
+                    </xs:sequence>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="standingsTeam">
+        <xs:complexContent>
+            <xs:extension base="soccer:simpleTeam">
+                <xs:sequence>
+                    <xs:sequence>
+                        <xs:element minOccurs="1" maxOccurs="1" name="home" type="soccer:standingsStatDetail"/>
+                        <xs:element minOccurs="1" maxOccurs="1" name="away" type="soccer:standingsStatDetail"/>
+                    </xs:sequence>
+                </xs:sequence>
+                <xs:attribute name="win" use="required" type="xs:int"/>
+                <xs:attribute name="loss" use="required" type="xs:int"/>
+                <xs:attribute name="draw" use="required" type="xs:int"/>
+                <xs:attribute name="goals_against" use="required" type="xs:int"/>
+                <xs:attribute name="goals_for" use="required" type="xs:int"/>
+                <xs:attribute name="points" use="required" type="xs:int"/>
+                <xs:attribute name="change" use="required" type="xs:int"/>
+                <xs:attribute name="rank" use="required" type="xs:int"/>
+                <xs:attribute name="goals_diff" use="required" type="xs:int"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="standingsStatDetail">
+        <xs:attribute name="win" use="required" type="soccer:blankInteger"/>
+        <xs:attribute name="loss" use="required" type="soccer:blankInteger"/>
+        <xs:attribute name="draw" use="required" type="soccer:blankInteger"/>
+        <xs:attribute name="goals_against" use="required" type="soccer:blankInteger"/>
+        <xs:attribute name="goals_for" use="required" type="soccer:blankInteger"/>
+        <xs:attribute name="points" use="required" type="soccer:blankInteger"/>
+        <xs:attribute name="change" use="required" type="soccer:blankInteger"/>
+        <xs:attribute name="rank" use="required" type="soccer:blankInteger"/>
+    </xs:complexType>
+</xs:schema>

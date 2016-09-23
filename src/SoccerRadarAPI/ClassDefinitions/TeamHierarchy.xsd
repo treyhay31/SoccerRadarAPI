@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        xmlns:soccer="http://feed.elasticstats.com/schema/soccer/sr/v2/teams-hierarchy.xsd"
+        targetNamespace="http://feed.elasticstats.com/schema/soccer/sr/v2/teams-hierarchy.xsd"
+        elementFormDefault="qualified"
+        >
+    <xs:include schemaLocation="./common-soccer.xsd"/>
+    <xs:element name="hierarchy" type="soccer:hierarchy"/>
+    <xs:complexType name="hierarchy">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="category">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="soccer:simpleCategory">
+                            <xs:sequence>
+                                <xs:element maxOccurs="unbounded" name="tournament_group">
+                                    <xs:complexType>
+                                        <xs:complexContent>
+                                            <xs:extension base="soccer:extendedTournamentGroup">
+                                                <xs:sequence>
+                                                    <xs:element maxOccurs="unbounded" name="tournament">
+                                                        <xs:complexType>
+                                                            <xs:complexContent>
+                                                                <xs:extension base="soccer:extendedTournament">
+                                                                    <xs:sequence>
+                                                                        <xs:element minOccurs="1" maxOccurs="1" name="coverage" type="soccer:baseCoverage"/>
+                                                                        <xs:element minOccurs="0" maxOccurs="unbounded" name="team">
+                                                                            <xs:complexType>
+                                                                                <xs:complexContent>
+                                                                                    <xs:extension base="soccer:simpleTeam">
+                                                                                    </xs:extension>
+                                                                                </xs:complexContent>
+                                                                            </xs:complexType>
+                                                                        </xs:element>
+                                                                    </xs:sequence>
+                                                                </xs:extension>
+                                                            </xs:complexContent>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                            </xs:extension>
+                                        </xs:complexContent>
+                                    </xs:complexType>
+                                </xs:element>
+                            </xs:sequence>
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="generated" use="required" type="xs:dateTime"/>
+    </xs:complexType>
+</xs:schema>

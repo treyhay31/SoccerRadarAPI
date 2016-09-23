@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:soccer="http://feed.elasticstats.com/schema/soccer/sr/v2/players-profile.xsd"
+    targetNamespace="http://feed.elasticstats.com/schema/soccer/sr/v2/players-profile.xsd"
+    elementFormDefault="qualified"
+>
+    <xs:include schemaLocation="./common-soccer.xsd"/>
+    <xs:element name="profile" type="soccer:profile"/>
+    <xs:complexType name="profile">
+        <xs:sequence>
+            <xs:choice>
+                <xs:element name="player" type="soccer:playerProfile"/>
+                <xs:element name="manager" type="soccer:person"/>
+                <xs:element name="referee" type="soccer:person"/>
+            </xs:choice>
+        </xs:sequence>
+        <xs:attribute name="generated" use="required" type="xs:dateTime"/>
+    </xs:complexType>
+    <xs:complexType name="playerProfile">
+        <xs:complexContent>
+            <xs:extension base="soccer:player">
+                <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="1" name="teams" type="soccer:playerTeamRoster"/>
+                    <xs:element minOccurs="0" maxOccurs="1" name="statistics" type="soccer:playerSeasonalStatistics"/>
+                </xs:sequence>
+                <xs:attribute name="birthdate" use="optional" type="xs:string"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+</xs:schema>

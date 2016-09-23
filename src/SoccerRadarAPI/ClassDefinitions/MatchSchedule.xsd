@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:soccer="http://feed.elasticstats.com/schema/soccer/sr/v2/matches-schedule.xsd"
+    targetNamespace="http://feed.elasticstats.com/schema/soccer/sr/v2/matches-schedule.xsd"
+    elementFormDefault="qualified"
+>
+    <xs:include schemaLocation="./common-soccer.xsd"/>
+    <xs:element name="schedule" type="soccer:schedule"/>
+    <xs:complexType name="schedule">
+        <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="matches" type="soccer:matches"/>
+        </xs:sequence>
+        <xs:attribute name="generated" use="required" type="xs:dateTime"/>
+    </xs:complexType>
+    <xs:complexType name="matches">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="match" type="soccer:schedulematch"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="schedulematch">
+        <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="category"         type="soccer:simpleCategory"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="tournament_group" type="soccer:extendedTournamentGroup"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="tournament"       type="soccer:extendedTournament"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="home"             type="soccer:simpleTeam"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="away"             type="soccer:simpleTeam"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="venue"            type="soccer:venue"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="round"            type="soccer:matchRound"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="coverage"         type="soccer:scheduleCoverage"/>
+        </xs:sequence>
+        <xs:attribute name="id"             use="required" type="soccer:entityId"/>
+        <xs:attribute name="season_id"      use="required" type="soccer:entityId"/>
+        <xs:attribute name="status"         use="required" type="soccer:matchStatus"/>
+        <xs:attribute name="scheduled"      use="required" type="xs:dateTime"/>
+        <xs:attribute name="scratched"      use="required" type="xs:boolean"/>
+        <xs:attribute name="reference_id"   use="required" type="xs:string"/>
+    </xs:complexType>
+</xs:schema>

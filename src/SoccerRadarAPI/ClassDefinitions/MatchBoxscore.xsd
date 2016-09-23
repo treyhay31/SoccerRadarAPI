@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:soccer="http://feed.elasticstats.com/schema/soccer/sr/v2/matches-boxscore.xsd"
+    targetNamespace="http://feed.elasticstats.com/schema/soccer/sr/v2/matches-boxscore.xsd"
+    elementFormDefault="qualified"
+>
+    <xs:include schemaLocation="./common-soccer.xsd"/>
+    <xs:element name="boxscore" type="soccer:boxscore"/>
+    <xs:complexType name="boxscore">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="matches" type="soccer:boxscoreMatches"/>
+        </xs:sequence>
+        <xs:attribute name="generated" use="required" type="xs:dateTime"/>
+    </xs:complexType>
+    <xs:complexType name="boxscoreMatches">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="match" type="soccer:boxscoreMatch"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="boxscoreMatch">
+        <xs:complexContent>
+            <xs:extension base="soccer:match">
+                <xs:sequence>
+                    <xs:element minOccurs="1" maxOccurs="1" name="home" type="soccer:boxscoreTeam"/>
+                    <xs:element minOccurs="1" maxOccurs="1" name="away" type="soccer:boxscoreTeam"/>
+                    <xs:element minOccurs="0" maxOccurs="1" name="venue" type="soccer:venue"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+</xs:schema>

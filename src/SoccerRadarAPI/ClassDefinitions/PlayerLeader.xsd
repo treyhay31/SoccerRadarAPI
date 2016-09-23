@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:soccer="http://feed.elasticstats.com/schema/soccer/sr/v2/players-leader.xsd"
+    targetNamespace="http://feed.elasticstats.com/schema/soccer/sr/v2/players-leader.xsd"
+    elementFormDefault="qualified"
+>
+    <xs:include schemaLocation="./common-soccer.xsd"/>
+    <xs:element name="leaders">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" name="category" type="soccer:leadersCategory"/>
+            </xs:sequence>
+            <xs:attribute name="generated" use="required" type="xs:dateTime"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="leadersCategory">
+        <xs:complexContent>
+            <xs:extension base="soccer:simpleCategoryReferenceIdOptional">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" name="tournament_group" type="soccer:leadersTournamentGroup"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="leadersTournamentGroup">
+        <xs:complexContent>
+            <xs:extension base="soccer:extendedTournamentGroup">
+                <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="1" name="top_goals" type="soccer:leadersTopGoals"/>
+                    <xs:element minOccurs="0" maxOccurs="1" name="top_own_goals" type="soccer:leadersTopOwnGoals"/>
+                    <xs:element minOccurs="0" maxOccurs="1" name="top_assists" type="soccer:leadersTopAssists"/>
+                    <xs:element minOccurs="0" maxOccurs="1" name="top_cards" type="soccer:leadersTopCards"/>
+                    <xs:element minOccurs="0" maxOccurs="1" name="top_points" type="soccer:leadersTopPoints"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="leadersTopGoals">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="player">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="soccer:minimizedPlayer">
+                            <xs:sequence>
+                                <xs:element minOccurs="1" maxOccurs="1" name="teams">
+                                    <xs:complexType>
+                                        <xs:sequence>
+                                            <xs:element minOccurs="1" maxOccurs="unbounded" name="team">
+                                                <xs:complexType>
+                                                    <xs:complexContent>
+                                                        <xs:extension base="soccer:simpleTeam">
+                                                            <xs:attribute name="goals" use="required" type="xs:int"/>
+                                                            <xs:attribute name="matches" use="required" type="xs:int"/>
+                                                            <xs:attribute name="substituted_in" use="required" type="xs:int"/>
+                                                        </xs:extension>
+                                                    </xs:complexContent>
+                                                </xs:complexType>
+                                            </xs:element>
+                                        </xs:sequence>
+                                    </xs:complexType>
+                                </xs:element>
+                                <xs:element minOccurs="1" maxOccurs="1" name="total">
+                                    <xs:complexType>
+                                        <xs:attribute name="goals" use="required" type="xs:int"/>
+                                        <xs:attribute name="matches" use="required" type="xs:int"/>
+                                        <xs:attribute name="substituted_in" use="required" type="xs:int"/>
+                                    </xs:complexType>
+                                </xs:element>
+                            </xs:sequence>
+                            <xs:attribute name="position" use="required" type="soccer:position"/>
+                            <xs:attribute name="rank" use="required" type="xs:int"/>
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="leadersTopOwnGoals">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="player">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="soccer:minimizedPlayer">
+                            <xs:sequence>
+                                <xs:element minOccurs="1" maxOccurs="1" name="teams">
+                                    <xs:complexType>
+                                        <xs:sequence>
+                                            <xs:element minOccurs="1" maxOccurs="unbounded" name="team">
+                                                <xs:complexType>
+                                                    <xs:complexContent>
+                                                        <xs:extension base="soccer:simpleTeam">
+                                                            <xs:attribute name="own_goals" use="required" type="xs:int"/>
+                                                            <xs:attribute name="matches" use="required" type="xs:int"/>
+                                                            <xs:attribute name="substituted_in" use="required" type="xs:int"/>
+                                                        </xs:extension>
+                                                    </xs:complexContent>
+                                                </xs:complexType>
+                                            </xs:element>
+                                        </xs:sequence>
+                                    </xs:complexType>
+                                </xs:element>
+                                <xs:element minOccurs="1" maxOccurs="1" name="total">
+                                    <xs:complexType>
+                                        <xs:attribute name="own_goals" use="required" type="xs:int"/>
+                                        <xs:attribute name="matches" use="required" type="xs:int"/>
+                                        <xs:attribute name="substituted_in" use="required" type="xs:int"/>
+                                    </xs:complexType>
+                                </xs:element>
+                            </xs:sequence>
+                            <xs:attribute name="position" use="required" type="soccer:position"/>
+                            <xs:attribute name="rank" use="required" type="xs:int"/>
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="leadersTopAssists">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="player">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="soccer:minimizedPlayer">
+                            <xs:sequence>
+                                <xs:element minOccurs="1" maxOccurs="1" name="teams">
+                                    <xs:complexType>
+                                        <xs:sequence>
+                                            <xs:element minOccurs="1" maxOccurs="unbounded" name="team">
+                                                <xs:complexType>
+                                                    <xs:complexContent>
+                                                        <xs:extension base="soccer:simpleTeam">
+                                                            <xs:attribute name="assists" use="required" type="xs:int"/>
+                                                            <xs:attribute name="matches" use="required" type="xs:int"/>
+                                                            <xs:attribute name="substituted_in" use="required" type="xs:int"/>
+                                                        </xs:extension>
+                                                    </xs:complexContent>
+                                                </xs:complexType>
+                                            </xs:element>
+                                        </xs:sequence>
+                                    </xs:complexType>
+                                </xs:element>
+                                <xs:element minOccurs="1" maxOccurs="1" name="total">
+                                    <xs:complexType>
+                                        <xs:attribute name="assists" use="required" type="xs:int"/>
+                                        <xs:attribute name="matches" use="required" type="xs:int"/>
+                                        <xs:attribute name="substituted_in" use="required" type="xs:int"/>
+                                    </xs:complexType>
+                                </xs:element>
+                            </xs:sequence>
+                            <xs:attribute name="position" use="required" type="soccer:position"/>
+                            <xs:attribute name="rank" use="required" type="xs:int"/>
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="leadersTopCards">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="player">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="soccer:minimizedPlayer">
+                            <xs:sequence>
+                                <xs:element minOccurs="1" maxOccurs="1" name="teams">
+                                    <xs:complexType>
+                                        <xs:sequence>
+                                            <xs:element minOccurs="1" maxOccurs="unbounded" name="team">
+                                                <xs:complexType>
+                                                    <xs:complexContent>
+                                                        <xs:extension base="soccer:simpleTeam">
+                                                            <xs:attribute name="yellow_cards" use="required" type="xs:int"/>
+                                                            <xs:attribute name="yellowred_cards" use="required" type="xs:int"/>
+                                                            <xs:attribute name="red_cards" use="required" type="xs:int"/>
+                                                            <xs:attribute name="matches" use="required" type="xs:int"/>
+                                                            <xs:attribute name="substituted_in" use="required" type="xs:int"/>
+                                                        </xs:extension>
+                                                    </xs:complexContent>
+                                                </xs:complexType>
+                                            </xs:element>
+                                        </xs:sequence>
+                                    </xs:complexType>
+                                </xs:element>
+                                <xs:element minOccurs="1" maxOccurs="1" name="total">
+                                    <xs:complexType>
+                                        <xs:attribute name="yellow_cards" use="required" type="xs:int"/>
+                                        <xs:attribute name="yellowred_cards" use="required" type="xs:int"/>
+                                        <xs:attribute name="red_cards" use="required" type="xs:int"/>
+                                        <xs:attribute name="matches" use="required" type="xs:int"/>
+                                        <xs:attribute name="substituted_in" use="required" type="xs:int"/>
+                                    </xs:complexType>
+                                </xs:element>
+                            </xs:sequence>
+                            <xs:attribute name="position" use="required" type="soccer:position"/>
+                            <xs:attribute name="rank" use="required" type="xs:int"/>
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="leadersTopPoints">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="player">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="soccer:minimizedPlayer">
+                            <xs:sequence>
+                                <xs:element minOccurs="1" maxOccurs="1" name="teams">
+                                    <xs:complexType>
+                                        <xs:sequence>
+                                            <xs:element minOccurs="1" maxOccurs="unbounded" name="team">
+                                                <xs:complexType>
+                                                    <xs:complexContent>
+                                                        <xs:extension base="soccer:simpleTeam">
+                                                            <xs:attribute name="goals" use="required" type="xs:int"/>
+                                                            <xs:attribute name="assists" use="required" type="xs:int"/>
+                                                            <xs:attribute name="points" use="required" type="xs:int"/>
+                                                            <xs:attribute name="matches" use="required" type="xs:int"/>
+                                                            <xs:attribute name="substituted_in" use="required" type="xs:int"/>
+                                                        </xs:extension>
+                                                    </xs:complexContent>
+                                                </xs:complexType>
+                                            </xs:element>
+                                        </xs:sequence>
+                                    </xs:complexType>
+                                </xs:element>
+                                <xs:element minOccurs="1" maxOccurs="1" name="total">
+                                    <xs:complexType>
+                                        <xs:attribute name="goals" use="required" type="xs:int"/>
+                                        <xs:attribute name="assists" use="required" type="xs:int"/>
+                                        <xs:attribute name="points" use="required" type="xs:int"/>
+                                        <xs:attribute name="matches" use="required" type="xs:int"/>
+                                        <xs:attribute name="substituted_in" use="required" type="xs:int"/>
+                                    </xs:complexType>
+                                </xs:element>
+                            </xs:sequence>
+                            <xs:attribute name="position" use="required" type="soccer:position"/>
+                            <xs:attribute name="rank" use="required" type="xs:int"/>
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

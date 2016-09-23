@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:soccer="http://feed.elasticstats.com/schema/soccer/sr/v2/teams-profile.xsd"
+    targetNamespace="http://feed.elasticstats.com/schema/soccer/sr/v2/teams-profile.xsd"
+    elementFormDefault="qualified"
+>
+    <xs:include schemaLocation="./common-soccer.xsd"/>
+    <xs:element name="profile" type="soccer:profile"/>
+    <xs:complexType name="profile">
+        <xs:sequence>
+            <xs:element maxOccurs="1" name="team" type="soccer:myTeamProfile"/>
+        </xs:sequence>
+        <xs:attribute name="generated" use="required" type="xs:dateTime"/>
+    </xs:complexType>
+    <xs:complexType name="myTeamProfile">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="manager" type="soccer:teamProfilePlayer"/>
+            <xs:element maxOccurs="unbounded" name="roster" type="soccer:teamProfileRoster"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="statistics" type="soccer:teamSeasonalStatistics"/>
+        </xs:sequence>
+        <xs:attribute name="id"             type="soccer:entityId"/>
+        <xs:attribute name="name"           type="xs:string"/>
+        <xs:attribute name="full_name"      type="xs:string"/>
+        <xs:attribute name="alias"          type="xs:string"/>
+        <xs:attribute name="country_code"   type="soccer:countryCode"/>
+        <xs:attribute name="country"        type="xs:string"/>
+        <xs:attribute name="type"           type="xs:string"/>
+        <xs:attribute name="reference_id"   type="xs:string"/>
+    </xs:complexType>
+    <xs:complexType name="teamProfileRoster">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="player" type="teamProfilePlayer" />
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="teamProfilePlayer">
+        <xs:attribute name="id"             type="soccer:entityId"/>
+        <xs:attribute name="first_name"     type="xs:string"/>
+        <xs:attribute name="last_name"      type="xs:string"/>
+        <xs:attribute name="country_code"   type="soccer:countryCode"/>
+        <xs:attribute name="country"        type="xs:string"/>
+        <xs:attribute name="preferred_foot" type="xs:string"/>
+        <xs:attribute name="birthdate"      type="xs:string"/>
+        <xs:attribute name="height_in"      type="xs:string"/>
+        <xs:attribute name="weight_lb"      type="xs:string"/>
+        <xs:attribute name="height_cm"      type="xs:string"/>
+        <xs:attribute name="weight_kg"      type="xs:string"/>
+        <xs:attribute name="reference_id"   type="xs:string"/>
+        <xs:attribute name="jersey_number"  type="xs:string"/>
+        <xs:attribute name="position"       type="soccer:teamType"/>
+    </xs:complexType>
+</xs:schema>
